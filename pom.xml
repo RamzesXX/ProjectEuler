@@ -12,5 +12,6 @@
     <modules>
         <module>t1</module>
         <module>osgi</module>
+        <module>telegrambot</module>
     </modules>
 </project>

@@ -3,13 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <dependencies>
-        <dependency>
-            <groupId>com.khanchych.sandbox</groupId>
-            <artifactId>osgi1</artifactId>
-            <version>1.0</version>
-        </dependency>
-    </dependencies>
+
     <parent>
         <artifactId>osgi-parent</artifactId>
         <groupId>com.khanchych.sandbox</groupId>
@@ -19,6 +13,14 @@
     <artifactId>osgi2</artifactId>
     <packaging>bundle</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.khanchych.sandbox</groupId>
+            <artifactId>osgi1</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -27,7 +29,9 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-Activator>com.khanchych.sandbox.osgi.osgi2.HelloWorldActivator</Bundle-Activator>
+                        <Bundle-Activator>
+                            com.khanchych.sandbox.osgi.osgi2.HelloWorldActivator
+                        </Bundle-Activator>
                     </instructions>
                 </configuration>
             </plugin>
