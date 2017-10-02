@@ -138,6 +138,7 @@ public class LargeSum {
     }
 
     public static void main(String[] args) {
-        String result = Stream.of(NUMBERS)
+        String result = Stream.of(NUMBERS).reduce("0", LargeSum::sum).substring(0, 10);
+        System.out.println(result);
     }
 }
