@@ -65,6 +65,10 @@ public class Game extends JPanel implements MouseListener {
     }
 
     public void mouseClicked(MouseEvent e) {
+
+    }
+
+    public void mousePressed(MouseEvent e) {
         if (!catAndDoors.isGameFinished()) {
             lastCheckedPosition = 1 + e.getX() / PICTURE_WIDTH;
             try {
@@ -87,10 +91,6 @@ public class Game extends JPanel implements MouseListener {
             }
         });
         th.start();
-    }
-
-    public void mousePressed(MouseEvent e) {
-
     }
 
     public void mouseReleased(MouseEvent e) {
