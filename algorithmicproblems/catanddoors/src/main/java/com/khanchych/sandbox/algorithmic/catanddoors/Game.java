@@ -14,6 +14,7 @@ public class Game extends JPanel implements MouseListener {
     private static BufferedImage CLOSED_DOOR;
     private static BufferedImage OPEN_DOOR;
     private static BufferedImage OPEN_DOOR_WITH_MOUSE;
+    private boolean showHint;
 
     static {
         ClassLoader classLoader = Game.class.getClassLoader();
@@ -33,7 +34,7 @@ public class Game extends JPanel implements MouseListener {
 
     public Game() {
         this.catAndDoors = new CatAndDoors(7);
-
+        this.showHint = true;
     }
 
     public static void main(String[] args) {
@@ -54,16 +55,20 @@ public class Game extends JPanel implements MouseListener {
         BufferedImage image;
         Graphics2D g2 = (Graphics2D) g.create();
 
+        g2.clearRect(0, 300, 1050, 350);
         for (int i = 0; i < catAndDoors.getDoors(); i++) {
+            if (catAndDoors.getCatPosition() == i + 1 && showHint) {
+                g2.drawOval(75 + i * PICTURE_WIDTH, 310, 5, 5);
+            }
             if (i + 1 == lastCheckedPosition) {
                 image = catAndDoors.isGameFinished() ? OPEN_DOOR_WITH_MOUSE : OPEN_DOOR;
             } else {
                 image = CLOSED_DOOR;
             }
             g2.drawImage(image, i * PICTURE_WIDTH, 0, null);
+
         }
-        g2.clearRect(0,300, 1000,350);
-        g2.drawString(catAndDoors.getAttemptCount()+"", 0,320);
+        g2.drawString("Попыток использовано:" + catAndDoors.getAttemptCount(), 0, 350);
     }
 
     public void mouseClicked(MouseEvent e) {
@@ -79,7 +84,7 @@ public class Game extends JPanel implements MouseListener {
                 e1.printStackTrace();
             }
         }
-        this.invalidate();
+        showHint = false;
         this.repaint();
         th = new Thread(new Runnable() {
             public void run() {
@@ -89,6 +94,7 @@ public class Game extends JPanel implements MouseListener {
                 }
                 if (!catAndDoors.isGameFinished()) {
                     lastCheckedPosition = 0;
+                    showHint = true;
                     repaint();
                 }
             }
