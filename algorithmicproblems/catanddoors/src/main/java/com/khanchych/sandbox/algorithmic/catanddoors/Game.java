@@ -3,10 +3,7 @@ package com.khanchych.sandbox.algorithmic.catanddoors;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -18,6 +15,7 @@ public class Game extends JPanel implements MouseListener {
     private static BufferedImage OPEN_DOOR;
     private static BufferedImage OPEN_DOOR_WITH_MOUSE;
     private boolean showHint;
+    private boolean drawHint;
 
     static {
         ClassLoader classLoader = Game.class.getClassLoader();
@@ -37,17 +35,26 @@ public class Game extends JPanel implements MouseListener {
 
     public Game() {
         this.catAndDoors = new CatAndDoors(7);
-        this.showHint = true;
-        Button button=new Button("Начать с начала");
-        button.setBounds(0,0,80,20);
-        button.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+        this.drawHint = true;
+        Button button = new Button("Начать с начала");
+        button.setBounds(0, 0, 80, 20);
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 catAndDoors.init();
                 lastCheckedPosition = 0;
                 repaint();
             }
         });
         this.add(button);
+        Checkbox checkbox = new Checkbox("Показывать подсказку");
+        checkbox.setState(showHint);
+        checkbox.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                showHint = e.getStateChange() == ItemEvent.SELECTED;
+                repaint();
+            }
+        });
+        this.add(checkbox);
     }
 
     public static void main(String[] args) {
@@ -68,10 +75,10 @@ public class Game extends JPanel implements MouseListener {
         BufferedImage image;
         Graphics2D g2 = (Graphics2D) g.create();
 
-        g2.clearRect(0, 300, 1050, 350);
+        g2.clearRect(0, 330, 1050, 50);
         for (int i = 0; i < catAndDoors.getDoors(); i++) {
-            if (catAndDoors.getCatPosition() == i + 1 && showHint) {
-                g2.drawOval(75 + i * PICTURE_WIDTH, 310, 5, 5);
+            if (catAndDoors.getCatPosition() == i + 1 && drawHint && showHint) {
+                g2.drawOval(75 + i * PICTURE_WIDTH, 300 + Y, 5, 5);
             }
             if (i + 1 == lastCheckedPosition) {
                 image = catAndDoors.isGameFinished() ? OPEN_DOOR_WITH_MOUSE : OPEN_DOOR;
@@ -80,7 +87,7 @@ public class Game extends JPanel implements MouseListener {
             }
             g2.drawImage(image, i * PICTURE_WIDTH, Y, null);
         }
-        g2.drawString("Попыток использовано:" + catAndDoors.getAttemptCount(), 0, 350);
+        g2.drawString("Попыток использовано:" + catAndDoors.getAttemptCount(), 0, 360);
     }
 
     public void mouseClicked(MouseEvent e) {
@@ -96,7 +103,7 @@ public class Game extends JPanel implements MouseListener {
                 e1.printStackTrace();
             }
         }
-        showHint = false;
+        drawHint = false;
         this.repaint();
         th = new Thread(new Runnable() {
             public void run() {
@@ -106,7 +113,7 @@ public class Game extends JPanel implements MouseListener {
                 }
                 if (!catAndDoors.isGameFinished()) {
                     lastCheckedPosition = 0;
-                    showHint = true;
+                    drawHint = true;
                     repaint();
                 }
             }
