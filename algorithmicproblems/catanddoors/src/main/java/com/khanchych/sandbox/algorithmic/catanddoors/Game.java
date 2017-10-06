@@ -3,6 +3,8 @@ package com.khanchych.sandbox.algorithmic.catanddoors;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -11,6 +13,7 @@ import java.io.IOException;
 public class Game extends JPanel implements MouseListener {
 
     public static final int PICTURE_WIDTH = 150;
+    public static final int Y = 35;
     private static BufferedImage CLOSED_DOOR;
     private static BufferedImage OPEN_DOOR;
     private static BufferedImage OPEN_DOOR_WITH_MOUSE;
@@ -35,6 +38,16 @@ public class Game extends JPanel implements MouseListener {
     public Game() {
         this.catAndDoors = new CatAndDoors(7);
         this.showHint = true;
+        Button button=new Button("Начать с начала");
+        button.setBounds(0,0,80,20);
+        button.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                catAndDoors.init();
+                lastCheckedPosition = 0;
+                repaint();
+            }
+        });
+        this.add(button);
     }
 
     public static void main(String[] args) {
@@ -65,8 +78,7 @@ public class Game extends JPanel implements MouseListener {
             } else {
                 image = CLOSED_DOOR;
             }
-            g2.drawImage(image, i * PICTURE_WIDTH, 0, null);
-
+            g2.drawImage(image, i * PICTURE_WIDTH, Y, null);
         }
         g2.drawString("Попыток использовано:" + catAndDoors.getAttemptCount(), 0, 350);
     }

@@ -12,7 +12,10 @@ public class CatAndDoors {
     public CatAndDoors(int doors) {
         this.doors = doors;
         this.random = new Random();
-//        this.random = new Random(doors);
+        init();
+    }
+
+    public void init() {
         this.catPosition = random.nextInt(doors) + 1;
         this.attemptCount = 0;
         this.gameFinished = false;
