@@ -40,7 +40,7 @@ public class Game extends JPanel implements MouseListener {
         final Game game = new Game();
         final JFrame frame = new JFrame();
 
-
+        frame.setResizable(false);
         frame.setContentPane(game);
         frame.addMouseListener(game);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +62,8 @@ public class Game extends JPanel implements MouseListener {
             }
             g2.drawImage(image, i * PICTURE_WIDTH, 0, null);
         }
+        g2.clearRect(0,300, 1000,350);
+        g2.drawString(catAndDoors.getAttemptCount()+"", 0,320);
     }
 
     public void mouseClicked(MouseEvent e) {
@@ -77,6 +79,7 @@ public class Game extends JPanel implements MouseListener {
                 e1.printStackTrace();
             }
         }
+        this.invalidate();
         this.repaint();
         th = new Thread(new Runnable() {
             public void run() {

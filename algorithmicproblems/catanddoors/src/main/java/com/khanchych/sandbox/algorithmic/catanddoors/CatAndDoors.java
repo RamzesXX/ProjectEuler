@@ -12,7 +12,8 @@ public class CatAndDoors {
 
     public CatAndDoors(int doors) {
         this.doors = doors;
-        this.random = new Random(doors);
+        this.random = new Random();
+//        this.random = new Random(doors);
         this.catPosition = random.nextInt(doors) + 1;
         this.attemptCount = 0;
         this.gameFinished = false;
@@ -42,12 +43,12 @@ public class CatAndDoors {
         if (gameFinished) {
             throw new Exception("The game was already finished");
         }
+        attemptCount++;
         if (consideredCatPosition == catPosition) {
             gameFinished = true;
             return true;
         }
 
-        attemptCount++;
         moveCat();
 
         return false;
