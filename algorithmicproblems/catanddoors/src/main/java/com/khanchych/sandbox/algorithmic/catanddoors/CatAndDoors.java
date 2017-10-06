@@ -1,7 +1,6 @@
 package com.khanchych.sandbox.algorithmic.catanddoors;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class CatAndDoors {
     private final int doors;
@@ -60,19 +59,5 @@ public class CatAndDoors {
 
     public boolean isGameFinished() {
         return gameFinished;
-    }
-
-    public static void main(String[] args) throws Exception {
-        Scanner scanner = new Scanner(System.in);
-        CatAndDoors game = new CatAndDoors(7);
-
-        while (!game.isGameFinished()) {
-            System.out.print("Your turn(1-" + game.getDoors() + ") - ");
-            int pos = scanner.nextInt();
-
-            game.check(pos);
-        }
-
-        System.out.println("You've caught the cat in " + game.getAttemptCount() + " attempts");
     }
 }
