@@ -4,15 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.khanchych.sandbox</groupId>
-    <artifactId>parent</artifactId>
-    <version>1.0</version>
-    <packaging>pom</packaging>
+    <parent>
+        <artifactId>algorithmic-problems</artifactId>
+        <groupId>com.khanchych.sandbox</groupId>
+        <version>1.0</version>
+    </parent>
 
-    <modules>
-        <module>t1</module>
-        <module>osgi</module>
-        <module>grap2D</module>
-        <module>algorithmicproblems</module>
-    </modules>
+    <artifactId>spiraldiagonal</artifactId>
+
+
 </project>
