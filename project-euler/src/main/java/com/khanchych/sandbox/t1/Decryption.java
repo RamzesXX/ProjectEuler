@@ -17,7 +17,7 @@ public class Decryption {
                 .lines()
                 .flatMap(line -> Arrays.stream(line.split(",")))
                 .map(Integer::valueOf)
-//                .map(e -> e ^ 'g')
+                .map(e -> e ^ ' ')
                 .toArray(Integer[]::new);
     }
 
