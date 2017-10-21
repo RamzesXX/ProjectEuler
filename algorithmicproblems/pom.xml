@@ -13,6 +13,7 @@
     <modules>
         <module>catanddoors</module>
         <module>spiraldiagonals</module>
+        <module>leetcode</module>
     </modules>
 
     <artifactId>algorithmic-problems</artifactId>
