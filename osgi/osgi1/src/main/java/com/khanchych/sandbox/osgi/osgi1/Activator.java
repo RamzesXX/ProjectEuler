@@ -8,7 +8,7 @@ public class Activator implements BundleActivator {
     BundleContext bundleContext;
     private ServiceRegistration registration;
 
-    public void start(BundleContext bundleContext) throws Exception {
+    public void start(BundleContext bundleContext) {
         this.bundleContext = bundleContext;
         registration = bundleContext.registerService(
                 HelloWorldService.class.getName(),
@@ -17,7 +17,7 @@ public class Activator implements BundleActivator {
         System.out.println("Bundle activator has started.");
     }
 
-    public void stop(BundleContext bundleContext) throws Exception {
+    public void stop(BundleContext bundleContext) {
         registration.unregister();
         System.out.println("Bundle activator has stopped.");
     }

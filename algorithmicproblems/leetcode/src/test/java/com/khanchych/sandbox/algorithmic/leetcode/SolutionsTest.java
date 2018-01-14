@@ -14,7 +14,7 @@ public class SolutionsTest {
     }
 
     @Test
-    public void lengthOfLongestSubstring() throws Exception {
+    public void lengthOfLongestSubstring() {
         assertEquals(1, solutions.lengthOfLongestSubstring("aaaaaaa"));
         assertEquals(3, solutions.lengthOfLongestSubstring("abcabcbb"));
         assertEquals(3, solutions.lengthOfLongestSubstring("pwwkew"));
@@ -23,25 +23,25 @@ public class SolutionsTest {
     }
 
     @Test
-    public void findMedianSortedArrays() throws Exception {
+    public void findMedianSortedArrays() {
         assertEquals(2.0, solutions.findMedianSortedArrays(new int[]{1, 3}, new int[]{2}), 0.0001);
         assertEquals(2.5, solutions.findMedianSortedArrays(new int[]{1, 2}, new int[]{3, 4}), 0.0001);
     }
 
     @Test
-    public void minimumDeleteSum() throws Exception {
+    public void minimumDeleteSum() {
         assertEquals(231, solutions.minimumDeleteSum("sea", "eat"));
         assertEquals(403, solutions.minimumDeleteSum("delete", "leet"));
     }
 
     @Test
-    public void maxProfit() throws Exception {
+    public void maxProfit() {
         assertEquals(0, solutions.maxProfit(new int[]{9, 8, 1, 2, 3}, 2));
     }
 
 
     @Test
-    public void descent() throws Exception {
+    public void descent() {
         int m = 10, n = 10;
         int[][] field = new int[m][n];
 

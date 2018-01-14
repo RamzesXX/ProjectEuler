@@ -8,7 +8,7 @@ public class CatAndDoorsTest {
     private CatAndDoors game;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         game = new CatAndDoors(7);
     }
 

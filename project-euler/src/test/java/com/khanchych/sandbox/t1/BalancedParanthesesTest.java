@@ -13,7 +13,7 @@ public class BalancedParanthesesTest {
     }
 
     @Test
-    public void isBalanced() throws Exception {
+    public void isBalanced() {
         assertTrue(checker.isBalanced("[({})]"));
         assertTrue(checker.isBalanced("{}([])"));
         assertTrue(checker.isBalanced("{()}[jhhjgjgjhgjkg[{}]]"));

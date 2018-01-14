@@ -14,5 +14,8 @@
         <module>osgi</module>
         <module>grap2D</module>
         <module>algorithmicproblems</module>
+        <module>cassandrat1</module>
+        <module>logtutor</module>
+        <module>graphtask</module>
     </modules>
 </project>

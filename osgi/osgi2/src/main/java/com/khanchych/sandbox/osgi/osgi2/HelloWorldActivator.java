@@ -8,14 +8,14 @@ import org.osgi.framework.ServiceReference;
 public class HelloWorldActivator implements BundleActivator {
     private HelloWorldConsumer consumer;
 
-    public void start(BundleContext bundleContext) throws Exception {
+    public void start(BundleContext bundleContext) {
         ServiceReference reference = bundleContext.getServiceReference(HelloWorldService.class.getName());
 
         consumer = new HelloWorldConsumer((HelloWorldService) bundleContext.getService(reference));
         consumer.startTimer();
     }
 
-    public void stop(BundleContext bundleContext) throws Exception {
+    public void stop(BundleContext bundleContext) {
         consumer.stopTimer();
     }
 }
