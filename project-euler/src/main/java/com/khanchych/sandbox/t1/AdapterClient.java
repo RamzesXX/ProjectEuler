@@ -12,7 +12,7 @@ public class AdapterClient {
 
         final AtomicInteger counter = new AtomicInteger();
 
-        Stream.of("kl", "qwer", "hgfhjhgf").map(s -> new CharCounterTask(s, counter)).forEach(g->executorService.execute(g));
+        Stream.of("kl", "qwer", "hgfhjhgf").map(s -> new CharCounterTask(s, counter)).forEach(executorService::execute);
 
         executorService.awaitTermination(1, TimeUnit.SECONDS);
         System.out.println(counter);
